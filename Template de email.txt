@@ -1,0 +1,7 @@
+Olá,
+
+Segue o exercício de avaliação em anexo.
+
+Além do exercício, estou disponibilizando o código (API do cenário do exercício), bem como o script para geração do banco de dados, caso você prefira trabalhar localmente, porém, o .env-example está com uma string de conexão para um banco criado na plataforma https://elephantsql.com, para você trabalhar.
+
+Siga as instruções do arquivo README.md no código disponibilizado para iniciar o ambiente.

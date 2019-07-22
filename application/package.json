@@ -1,0 +1,38 @@
+{
+  "name": "xpto-ead",
+  "version": "0.2.0",
+  "private": true,
+  "description": "XPTO EAD - API de ensino a distância.",
+  "keywords": [
+    "API",
+    "XPTO",
+    "EAD",
+    "Avaliação"
+  ],
+  "author": "Diogo Matheus <dmc@cos.ufrj.br>",
+  "license": "UNLICENSED",
+  "main": "app.js",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.12.3",
+    "express-validator": "^4.3.0",
+    "fs": "0.0.1-security",
+    "i18n": "^0.8.3",
+    "moment": "^2.22.1",
+    "path": "^0.12.7",
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.22.5",
+    "swagger-express-mw": "^0.1.0"
+  },
+  "devDependencies": {
+    "faker": "^4.1.0",
+    "should": "^4.1.0",
+    "sinon": "^5.0.10",
+    "supertest": "^1.0.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "swagger project test"
+  }
+}

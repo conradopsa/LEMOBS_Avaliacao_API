@@ -1,0 +1,295 @@
+swagger: "2.0"
+info:
+  version: "0.2.0"
+  title: XPTO EAD
+  description: XPTO EAD - API de ensino a distância.
+# basepath
+basePath: /v1
+# schemes
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /professor:
+    x-swagger-router-controller: professor
+    get:
+      tags:
+        - Professor
+      description: Retornar os professores registrados
+      operationId: professorListar
+      responses:
+        "200":
+          description: Success
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal Server Error
+    post:
+      tags:
+        - Professor
+      description: Cadastrar professor
+      operationId: professorInserir
+      parameters:
+        - name: body
+          in: body
+          description: Parâmetros para cadastrar professor
+          required: true
+          schema:
+            $ref: "#/definitions/ProfessorRequest"
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal Server Error
+
+  /professor/{professor_id}:
+    x-swagger-router-controller: professor
+    get:
+      tags:
+        - Professor
+      description: Retornar professor
+      operationId: professorExibir
+      parameters:
+        - name: professor_id
+          in: path
+          description: Id do professor
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal Server Error
+    put:
+      tags:
+        - Professor
+      description: Atualizar professor
+      operationId: professorAtualizar
+      parameters:
+        - name: professor_id
+          in: path
+          description: Id do professor
+          required: true
+          type: integer
+        - name: body
+          in: body
+          description: Parâmetros para atualizar professor
+          required: true
+          schema:
+            $ref: "#/definitions/ProfessorRequest"
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+    delete:
+      tags:
+        - Professor
+      description: Remover professor (soft delete)
+      operationId: professorRemover
+      parameters:
+        - name: professor_id
+          in: path
+          description: Id do professor
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+
+  /curso:
+    x-swagger-router-controller: curso
+    get:
+      tags:
+        - Curso
+      description: Retornar os cursos registrados
+      operationId: cursoListar
+      responses:
+        "200":
+          description: Success
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal Server Error
+    post:
+      tags:
+        - Curso
+      description: Cadastrar curso
+      operationId: cursoInserir
+      parameters:
+        - name: body
+          in: body
+          description: Parâmetros para cadastrar curso
+          required: true
+          schema:
+            $ref: "#/definitions/CursoRequest"
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal Server Error
+
+  /curso/{curso_id}:
+    x-swagger-router-controller: curso
+    get:
+      tags:
+        - Curso
+      description: Retornar curso
+      operationId: cursoExibir
+      parameters:
+        - name: curso_id
+          in: path
+          description: Id do curso
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal Server Error
+    put:
+      tags:
+        - Curso
+      description: Atualizar curso
+      operationId: cursoAtualizar
+      parameters:
+        - name: curso_id
+          in: path
+          description: Id do curso
+          required: true
+          type: integer
+        - name: body
+          in: body
+          description: Parâmetros para atualizar curso
+          required: true
+          schema:
+            $ref: "#/definitions/CursoRequest"
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+    delete:
+      tags:
+        - Curso
+      description: Remover curso (soft delete)
+      operationId: CursoRemover
+      parameters:
+        - name: curso_id
+          in: path
+          description: Id do curso
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+
+  /swagger:
+    x-swagger-pipe: swagger_raw
+
+# complex objects have schema definitions
+definitions:
+  ProfessorRequest:
+    type: object
+    required:
+      - nome
+    properties:
+      nome:
+        type: string
+
+  CursoRequest:
+    type: object
+    required:
+      - professor_id
+      - titulo
+      - descricao
+    properties:
+      professor_id:
+        type: integer
+      titulo:
+        type: string
+      descricao:
+        type: string

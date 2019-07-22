@@ -1,0 +1,19 @@
+{
+	"http": {
+		"status": {
+			"400": "Requisição com sintaxe inválida.",
+			"401": "Requisição não autenticada.",
+			"402": "Pagamento requerido.",
+			"403": "Acesso não autorizado.",
+			"404": "Recurso não encontrado."
+		}
+	},
+	"express_validator": {
+		"exists": "Campo %s é obrigatório.",
+		"notEmpty": "Informe pelo menos um %s."
+	},
+	"registro": {
+		"atualizado": "Registro atualizado com sucesso.",
+		"removido": "Registro removido com sucesso."
+	}
+}
