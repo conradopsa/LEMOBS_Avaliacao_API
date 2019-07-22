@@ -1,4 +1,4 @@
-# LEMOBS Avaliação API - XPTO EAD: API de ensino a distância.
+# LEMOBS Avaliação API - XPTO EAD: API de ensino a distância
 - API Rest
 - Node.js
 - Swagger
