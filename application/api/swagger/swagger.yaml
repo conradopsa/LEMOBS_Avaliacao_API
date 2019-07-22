@@ -266,7 +266,132 @@ paths:
           description: Not Found
         "500":
           description: Internal Server Error
+  #
+  /aluno:
+    x-swagger-router-controller: aluno
+    get:
+      tags:
+        - Aluno
+      description: Retornar os alunos registrados
+      operationId: alunoListar
+      responses:
+        "200":
+          description: Success
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal Server Error
+    post:
+      tags:
+        - Aluno
+      description: Cadastrar Aluno
+      operationId: alunoInserir
+      parameters:
+        - name: body
+          in: body
+          description: Parâmetros para cadastrar aluno
+          required: true
+          schema:
+            $ref: "#/definitions/AlunoRequest"
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal Server Error
 
+  /aluno/{aluno_id}:
+    x-swagger-router-controller: aluno
+    get:
+      tags:
+        - Aluno
+      description: Retornar aluno
+      operationId: alunoExibir
+      parameters:
+        - name: aluno_id
+          in: path
+          description: Id do aluno
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal Server Error
+    put:
+      tags:
+        - Aluno
+      description: Atualizar aluno
+      operationId: alunoAtualizar
+      parameters:
+        - name: aluno_id
+          in: path
+          description: Id do aluno
+          required: true
+          type: integer
+        - name: body
+          in: body
+          description: Parâmetros para atualizar aluno
+          required: true
+          schema:
+            $ref: "#/definitions/AlunoRequest"
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+    delete:
+      tags:
+        - Aluno
+      description: Remover aluno (soft delete)
+      operationId: AlunoRemover
+      parameters:
+        - name: aluno_id
+          in: path
+          description: Id do aluno
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+  
   /swagger:
     x-swagger-pipe: swagger_raw
 
@@ -279,6 +404,32 @@ definitions:
     properties:
       nome:
         type: string
+
+  AulaRequest:
+    type: object
+    required:
+      - curso_id
+      - titulo
+      - conteudo
+    properties:
+      curso_id:
+        type: integer
+      titulo:
+        type: string
+      conteudo:
+        type: string
+
+  AlunoRequest:
+    type: object
+    required:
+      - nome
+      - data_nascimento
+    properties:
+      nome:
+        type: string
+      data_nascimento:
+        type: string
+        format: date
 
   CursoRequest:
     type: object
