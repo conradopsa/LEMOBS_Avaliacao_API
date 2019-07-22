@@ -4,8 +4,6 @@
 - Swagger
 - Sequelize
 
-# Ambientação:
-
 ## Pacotes de suporte
 - Instalar pacote global: swagger
 
