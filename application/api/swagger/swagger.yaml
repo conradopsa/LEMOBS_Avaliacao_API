@@ -392,6 +392,65 @@ paths:
         "500":
           description: Internal Server Error
   
+  #
+  /curso/{curso_id}/aula:
+    x-swagger-router-controller: aula
+    get:
+      tags:
+        - Aula
+      description: Listar Aulas
+      operationId: aulaListar
+      parameters:
+        - name: curso_id
+          in: path
+          description: Id do curso
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden
+        "500":
+          description: Internal Server Error
+    post:
+      tags:
+        - Aula
+      description: Inserir Aula
+      operationId: aulaInserir
+      parameters:
+        - name: curso_id
+          in: path
+          description: Id do curso
+          required: true
+          type: integer
+        - name: body
+          in: body
+          description: Parâmetros para atualizar curso
+          required: true
+          schema:
+            $ref: "#/definitions/AulaRequest"
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+  
+
   /swagger:
     x-swagger-pipe: swagger_raw
 
@@ -404,6 +463,17 @@ definitions:
     properties:
       nome:
         type: string
+
+  CursoAlunoRequest:
+    type: object
+    required:
+      - aluno_id
+      - curso_id
+    properties:
+      aluno_id:
+        type: integer
+      curso_id:
+        type: integer
 
   AulaRequest:
     type: object
