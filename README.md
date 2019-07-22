@@ -1,2 +1,5 @@
-# LEMOBS Avaliacao API
-- Avaliação - API Rest, Node.js, Swagger e Sequelize
+# LEMOBS Avaliação API
+- API Rest
+- Node.js
+- Swagger
+- Sequelize
