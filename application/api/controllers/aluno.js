@@ -29,7 +29,9 @@ function resgatar_filtros(request) {
 function listar(request, response) {
     (async () => {
         try{
-            var filtros = resgatar_filtros(request);
+            let filtros = resgatar_filtros(request);
+
+
             return Aluno.findAll(filtros)
                         .then(registros => helpers.response_array_list(registros, response))
                         .catch(error => error_handler.controller(error, response));

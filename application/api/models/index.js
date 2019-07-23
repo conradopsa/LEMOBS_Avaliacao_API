@@ -25,7 +25,7 @@ const sequelize = new Sequelize(database_url, {
     },
     define: {
         timestamps: false,
-        paranoid: true,
+        paranoid: false,
         underscored: true,
         freezeTableName: true
     },

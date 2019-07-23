@@ -478,12 +478,9 @@ definitions:
   AulaRequest:
     type: object
     required:
-      - curso_id
       - titulo
       - conteudo
     properties:
-      curso_id:
-        type: integer
       titulo:
         type: string
       conteudo:
