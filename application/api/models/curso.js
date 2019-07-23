@@ -2,6 +2,7 @@
 
 // Model interface
 module.exports = function(sequelize, DataTypes) {
+
     var Curso = sequelize.define(
         'Curso',
         {
@@ -17,6 +18,8 @@ module.exports = function(sequelize, DataTypes) {
     );
 
     Curso.associate = function(models) {
+
+        //1 : 1
         Curso.belongsTo(
             models.Professor,
             {
@@ -25,13 +28,33 @@ module.exports = function(sequelize, DataTypes) {
                 foreignKey: { allowNull: false }
             }
         );
+
+        //1 : N
+        Curso.hasMany(
+            models.CursoAluno,
+            {
+                as: 'cursoAluno', //onUpdate: 'CASCADE', onDelete: 'NO ACTION',
+                foreignKey: { allowNull: false }
+            },
+        );
+
+        Curso.hasMany(
+            models.Aula,
+            {
+                as: 'aula', //onUpdate: 'CASCADE', onDelete: 'NO ACTION',
+                foreignKey: { allowNull: false }
+            },
+        );
     }
 
     Curso.load_scopes = function(models) {
         Curso.addScope(
             'complete',
             {
-                include: [{ association: 'professor', required: false }]
+                include: [
+                    { association: 'professor', required: false },
+                    { association: 'cursoAluno', required: false } // PROBLEMA AQUI!
+                ]
             }
         );
     }

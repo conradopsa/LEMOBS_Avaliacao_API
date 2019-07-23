@@ -15,6 +15,19 @@ module.exports = function(sequelize, DataTypes) {
         }
     );
 
+    Aluno.associate = function(models) {
+        //1 : N
+        Aluno.hasMany(
+            models.CursoAluno,
+            {
+                as: 'cursoAluno', //onUpdate: 'CASCADE', onDelete: 'NO ACTION',
+                foreignKey: { allowNull: false }
+            },
+        );
+    }
+
+
+
     //Aluno.load_scopes = function(models) {}
 
     return Aluno;

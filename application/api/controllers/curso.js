@@ -69,6 +69,7 @@ function remover(request, response) {
         // Verificar existência do registro
         var curso_id = helpers.get_request_parameter(request, 'curso_id');
         var registro = await Curso.findById(curso_id);
+        
         if(!registro)
             return response.status(404).send(__('http.status.404'));
 
