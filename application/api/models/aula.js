@@ -33,7 +33,7 @@ module.exports = function(sequelize, DataTypes) {
 
     Aula.load_scopes = function(models) {
         Aula.addScope(
-            'completeScope',
+            'complete',
             {
                 include: [
                     {
@@ -43,7 +43,6 @@ module.exports = function(sequelize, DataTypes) {
             },
             { override: true }
         );
-
     };
 
     return Aula;

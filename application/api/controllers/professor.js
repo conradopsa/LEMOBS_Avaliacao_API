@@ -21,7 +21,7 @@ module.exports = {
 function listar(request, response) {
     (async () => {
         var filtros = resgatar_filtros(request);
-        return Professor.findAll(filtros)
+        return Professor.scope('complete').findAll(filtros)
                     .then(registros => helpers.response_array_list(registros, response))
                     .catch(error => error_handler.controller(error, response));
     })();
@@ -31,7 +31,7 @@ function exibir(request, response) {
     (async () => {
         var professor_id = helpers.get_request_parameter(request, 'professor_id');
 
-        return Professor.findById(professor_id)
+        return Professor.scope('complete').findById(professor_id)
                     .then(registro => helpers.response_register(
                         registro, response, __('http.status.404')
                     ))

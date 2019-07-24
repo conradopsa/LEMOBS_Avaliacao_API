@@ -5,6 +5,8 @@ const models = require('../models');
 const helpers = require('../helpers/functions.js');
 const error_handler = require('../helpers/error-handler.js');
 
+const logger = require('node-logger');
+
 // Model
 const Aluno = models.Aluno;
 
@@ -32,7 +34,7 @@ function listar(request, response) {
             let filtros = resgatar_filtros(request);
 
 
-            return Aluno.findAll(filtros)
+            return Aluno.scope('complete').findAll(filtros)
                         .then(registros => helpers.response_array_list(registros, response))
                         .catch(error => error_handler.controller(error, response));
         }catch(err){
@@ -46,7 +48,7 @@ function exibir(request, response) {
     (async () => {
         var aluno_id = helpers.get_request_parameter(request, 'aluno_id');
 
-        return Aluno.findById(aluno_id)
+        return Aluno.scope('complete').findById(aluno_id)
                     .then(registro => helpers.response_register(
                         registro, response, __('http.status.404')
                     ))
@@ -57,6 +59,12 @@ function exibir(request, response) {
 function inserir(request, response) {
     (async () => {
         var body = helpers.get_request_parameter(request, 'body');
+
+        const log = logger.createLogger('logs/aluno.log');
+
+        let info = `  Nome: ${body.nome}\n  Data de Nascimento: ${body.data_nascimento}`;
+
+        log.info('\n' + info);       
 
         return Aluno.create(body)
                     .then(registro => response.status(201).send(registro))

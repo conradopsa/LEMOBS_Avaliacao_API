@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
         {
             schema: 'public',
             tableName: 'curso_aluno',
-            timestamps: true
+            timestamps: false
         }
     );
 
@@ -33,6 +33,18 @@ module.exports = function(sequelize, DataTypes) {
         )
 
     };
+
+    CursoAluno.load_scopes = function(models) {
+        CursoAluno.addScope(
+            'complete',
+            {
+                include: [
+                    { association: 'curso', required: false },
+                    { association: 'aluno', required: false }
+                ]
+            }
+        );
+    }
 
     return CursoAluno;
 };

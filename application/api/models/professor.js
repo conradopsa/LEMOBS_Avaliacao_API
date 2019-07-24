@@ -18,11 +18,23 @@ module.exports = function(sequelize, DataTypes) {
     Professor.associate = function(models) {
         Professor.hasMany(
             models.Curso,
-            { as: 'cursos', foreignKey: 'professor_id' }
+            { as: 'curso', foreignKey: 'professor_id' }
         );
     }
 
-    Professor.load_scopes = function(models) {}
+    Professor.load_scopes = function(models) {
+        Professor.addScope(
+            'complete',
+            {
+                include: [
+                    {
+                        association: 'curso', required: false
+                    }
+                ]
+            },
+            { override: true }
+        );
+    };
 
     return Professor;
 };

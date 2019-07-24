@@ -53,7 +53,8 @@ module.exports = function(sequelize, DataTypes) {
             {
                 include: [
                     { association: 'professor', required: false },
-                    { association: 'cursoAluno', required: false } // PROBLEMA AQUI!
+                    { association: 'cursoAluno', required: false },
+                    { association: 'aula', required: false }
                 ]
             }
         );

@@ -55,7 +55,7 @@ function resgatar(request, response) {
 
             let filtros = resgatar_filtros_aulaCurso(request);
 
-            return Aula.scope('completeScope').findOne(filtros)
+            return Aula.scope('complete').findOne(filtros)
                         .then(registro => helpers.response_register(
                             registro, response, __('http.status.404')
                         ))
@@ -121,7 +121,7 @@ function listar(request, response) {
 
             //console.log(filtros);
 
-            return Aula.scope('completeScope').findAll(filtros)
+            return Aula.scope('complete').findAll(filtros)
                         .then(registros => helpers.response_array_list(registros, response))
                         .catch(error => {error_handler.controller(error, response); console.log(error);});
         }catch(err){

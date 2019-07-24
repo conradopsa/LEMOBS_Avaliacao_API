@@ -30,5 +30,16 @@ module.exports = function(sequelize, DataTypes) {
 
     //Aluno.load_scopes = function(models) {}
 
+    Aluno.load_scopes = function(models) {
+        Aluno.addScope(
+            'complete',
+            {
+                include: [
+                    { association: 'cursoAluno', required: false },
+                ]
+            }
+        );
+    }
+
     return Aluno;
 };
