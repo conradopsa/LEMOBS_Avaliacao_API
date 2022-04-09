@@ -18,7 +18,7 @@
     "express-validator": "^4.3.0",
     "fs": "0.0.1-security",
     "i18n": "^0.8.3",
-    "moment": "^2.22.1",
+    "moment": "^2.29.2",
     "node-logger": "0.0.1",
     "path": "^0.12.7",
     "pg": "^7.3.0",
