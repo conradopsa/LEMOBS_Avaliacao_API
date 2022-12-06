@@ -14,7 +14,7 @@
   "main": "app.js",
   "dependencies": {
     "dotenv": "^4.0.0",
-    "express": "^4.12.3",
+    "express": "^4.18.2",
     "express-validator": "^4.3.0",
     "fs": "0.0.1-security",
     "i18n": "^0.8.3",
@@ -24,13 +24,13 @@
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.22.5",
-    "swagger-express-mw": "^0.1.0"
+    "swagger-express-mw": "^0.7.0"
   },
   "devDependencies": {
     "faker": "^4.1.0",
     "should": "^4.1.0",
     "sinon": "^5.0.10",
-    "supertest": "^1.0.0"
+    "supertest": "^6.3.2"
   },
   "scripts": {
     "start": "node app.js",
